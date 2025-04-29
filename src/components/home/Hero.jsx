@@ -1,13 +1,15 @@
 import React from 'react';
-
 import image from '../../constants/image';
+import { useNavigate } from 'react-router-dom';
 const Hero = () => {
+  const navigate = useNavigate();
     return (
+      
         <div>
          
-      
+    
 
-  <section class="relative h-[80vh] flex items-center justify-center text-center">
+  <section class="relative h-[90vh] flex items-center justify-center text-center">
  
   <div class="absolute rounded-xl bg m-4 inset-0 bg-center bg-cover bg-no-repeat "><img src={image.cv} className=' w-[100%] object-cover rounded-xl  h-[100%]' alt="" /></div>
   
@@ -24,7 +26,7 @@ const Hero = () => {
 </p>
   
  
-<button
+<button onClick={() => navigate("/blog")}
   type="submit"
   class="flex justify-center text-black gap-2 items-center mx-auto shadow-xl text-lg bg-white/10  shadow backdrop-blur-md  backdrop-blur-md lg:font-semibold isolation-auto   before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-black hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden  rounded-full group"
 >
@@ -44,7 +46,8 @@ const Hero = () => {
 
   </div>
 </section>
-  
+
+
         </div>
     );
 };
