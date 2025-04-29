@@ -19,9 +19,8 @@ const NavBar = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-6">
           <a href="/" className="hover:underline text-sm">Home</a>
-          
-          <a href="/blog" className="hover:underline text-sm">AboutUs</a>
-          <a href="/blog" className="hover:underline text-sm">Blog</a>
+          <a href="#about" className="hover:underline text-sm">About</a>
+          <a href="#features" className="hover:underline text-sm">Features</a>
         </div>
 
         {/* Buttons */}
