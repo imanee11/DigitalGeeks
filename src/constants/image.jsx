@@ -1,3 +1,3 @@
 export default{
-    // nagi : require("../assets/images/nagi.jfif")
+    nagi : require("../assets/images/nagi.jfif")
 }

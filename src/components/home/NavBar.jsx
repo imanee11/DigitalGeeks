@@ -4,7 +4,8 @@ const NavBar = () => {
     return (
         <>
         <h1 className='text-red-400'>Hii</h1>
-            
+  
+ 
         </>
     );
 };
