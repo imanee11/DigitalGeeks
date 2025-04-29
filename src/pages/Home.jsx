@@ -5,9 +5,8 @@ import Features from '../components/home/Features';
 const Home = () => {
     return (
         <>
-        {/* <NavBar/> */}
+            <NavBar/>
             <Features/>
-            
         </>
     );
 };
