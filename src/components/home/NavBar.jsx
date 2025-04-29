@@ -10,7 +10,7 @@ const NavBar = () => {
   const toggleTheme = () => setDarkMode(!darkMode);
 
   return (
-    <header className={`${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"} shadow-md`}>
+    <header className={`${darkMode ? "bg-black text-white" : "bg-white text-gray-900"} shadow-md`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <a className="text-2xl font-bold tracking-wide" href="/">
           JobTalk
@@ -19,7 +19,8 @@ const NavBar = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-6">
           <a href="/" className="hover:underline text-sm">Home</a>
-          <a href="/blog" className="hover:underline text-sm">Blog</a>
+          <a href="#about" className="hover:underline text-sm">About</a>
+          <a href="#features" className="hover:underline text-sm">Features</a>
         </div>
 
         {/* Buttons */}
@@ -28,7 +29,7 @@ const NavBar = () => {
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <a href="/login" className="text-sm hover:underline">Login</a>
-          <a href="/signup" className="px-4 py-2 text-sm bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition">
+          <a href="/signup" className="px-4 py-2 text-sm bg-[#737778] hover:bg-[#737778] text-white rounded-3xl transition">
             Sign Up
           </a>
         </div>
