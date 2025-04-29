@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/images/logotalk.png'; // Adjust the path to your logo image
+import logo from '../../assets/images/image-removebg-preview (2).png'; // Adjust the path to your logo image
 const Footer = () => {
     return (
         <>
@@ -7,7 +7,7 @@ const Footer = () => {
                 {/* Logo and Description */}
                 <div className="text-center mb-6">
                     <a href="/" className="flex items-center justify-center text-3xl font-semibold text-gray-100 hover:text-gray-300">
-                        <img src={logo} className="h-12 mr-3 w10sm:h-9" alt="JobTalk Logo"/>
+                        <img src={logo} className="h-12 mr-3 w-sm:h-9" alt="JobTalk Logo"/>
                         JobTalk
                     </a>
                     <span className="block text-lg text-gray-400">
