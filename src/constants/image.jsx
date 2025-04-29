@@ -1,3 +1,3 @@
 export default{
-    nagi : require("../assets/images/nagi.jfif")
+    cv : require("../assets/images/home.jpg")
 }
