@@ -1,3 +1,3 @@
 export default{
-    // nagi : require("../assets/images/nagi.jfif")
+     logo : require("../assets/images/logotalk.png")
 }
