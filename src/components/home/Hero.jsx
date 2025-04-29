@@ -17,7 +17,7 @@ const Hero = () => {
   
   <div class="relative z-10 text-white px-6 max-w-2xl">
   <h2 class="text-4xl font-medieum sm:text-5xl  mb-6 leading-tight">
-  Real Interviews. Real Stories.
+  Real Interviews Real Stories.
 </h2>
 <p class="text-xl font-light md:text-2xl mt-6 text-gray-100 mb-6 ">
   Explore authentic interview journeys shared by real people to learn, to grow, and to inspire others.
