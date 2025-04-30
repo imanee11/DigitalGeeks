@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
 
+import { HiOutlineDotsVertical } from "react-icons/hi";
+import { MdDelete } from "react-icons/md";
+import { MdModeEditOutline } from "react-icons/md";
+
+
+
+
 const Blog = () => {
-    const [category, setCategory] = useState('');
-    const [title, setTitle] = useState('');    
+  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [post, setPost] = useState("");
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [posts, setPosts] = useState([]);
+
+  const [editPostId, setEditPostId] = useState(null); // track the post being edited
+
+
+  const [openMenuId, setOpenMenuId] = useState(null);
+
+  const toggleMenu = (id) => {
+    setOpenMenuId(openMenuId === id ? null : id);
+  };
+
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -17,19 +34,49 @@ const Blog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newPost = {
-      id: Date.now(),
-      category : category,
+
+    const updatedPost = {
+      id: editPostId || Date.now(),
+      category,
+      title,
       text: post,
-      title : title,
       image: imagePreview,
     };
-    setPosts([newPost, ...posts]);
+
+    if (editPostId) {
+      setPosts(
+        posts.map((p) => (p.id === editPostId ? updatedPost : p))
+      );
+    } else {
+      setPosts([updatedPost, ...posts]);
+    }
+
+    // Reset everything
+    setCategory("");
+    setTitle("");
     setPost("");
     setImage(null);
     setImagePreview(null);
+    setEditPostId(null);
     setIsOpen(false);
   };
+
+
+  const handleDelete = (id) => {
+    setPosts(posts.filter((post) => post.id !== id));
+  };
+
+  const handleEdit = (post) => {
+    setCategory(post.category);
+    setTitle(post.title);
+    setPost(post.text);
+    setImagePreview(post.image);
+    setEditPostId(post.id);
+    setIsOpen(true);
+  };
+
+
+
 
 
   return (
@@ -121,7 +168,7 @@ const Blog = () => {
 
       </ul>
 
-   
+
       {/* Modal */}
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -137,120 +184,142 @@ const Blog = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-  {/* Category Input */}
-  <input
-    type="text"
-    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-    placeholder="Category (e.g., Unexpected Questions)"
-    value={category}
-    onChange={(e) => setCategory(e.target.value)}
-    required
-  />
+              {/* Category Input */}
+              <input
+                type="text"
+                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Category (e.g., Unexpected Questions)"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                required
+              />
 
-  {/* Title Input */}
-  <input
-    type="text"
-    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-    placeholder="Title (e.g., “Tell me about a failure” — I wasn’t ready for that one.)"
-    value={title}
-    onChange={(e) => setTitle(e.target.value)}
-    required
-  />
+              {/* Title Input */}
+              <input
+                type="text"
+                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Title (e.g., “Tell me about a failure” — I wasn’t ready for that one.)"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
 
-  {/* Main Text */}
-  <textarea
-    className="w-full p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-    rows="1"
-    placeholder="Share your story..."
-    value={post}
-    onChange={(e) => setPost(e.target.value)}
-    required
-  ></textarea>
+              {/* Main Text */}
+              <textarea
+                className="w-full p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                rows="1"
+                placeholder="Share your story..."
+                value={post}
+                onChange={(e) => setPost(e.target.value)}
+                required
+              ></textarea>
 
-  {/* Image Upload Input */}
-  <input
-    type="file"
-    accept="image/*"
-    onChange={(e) => {
-      const file = e.target.files[0];
-      if (file) {
-        setImage(file);
-        setImagePreview(URL.createObjectURL(file));
-      }
-    }}
-    className="mt-2"
-  />
+              {/* Image Upload Input */}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    setImage(file);
+                    setImagePreview(URL.createObjectURL(file));
+                  }
+                }}
+                className="mt-2"
+              />
 
-  {/* Preview Image */}
-  <img
-  src={imagePreview}
-  alt="Preview"
-  className="mt-2 w-full h-40 object-cover rounded-xl"
-/>
+              {/* Preview Image */}
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="mt-2 w-full h-40 object-cover rounded-xl"
+              />
 
 
-  {/* Submit Button */}
-  <button
-    type="submit"
-    className="w-full bg-[#b1916b] text-white py-2 rounded-xl font-semibold hover:bg-[#8f8e93] transition duration-300"
-  >
-    Publish Story
-  </button>
-</form>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full bg-[#b1916b] text-white py-2 rounded-xl font-semibold hover:bg-[#8f8e93] transition duration-300"
+              >
+                Publish Story
+              </button>
+            </form>
 
 
           </div>
         </div>
       )}
 
-<div className=" ">
-  {posts.map((post) => (
-   <div className="">
-   {posts.map((post) => (
-     <div
-       key={post.id}
-       className="flex flex-col m-4 md:flex-row bg-white p-4 "
-     >
-       {/* IMAGE */}
-       {post.image && (
-         <img
-           src={post.image}
-           alt="Post"
-          className="h-[33vh] object-cover mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full"
-         />
-       )}
- 
-       {/* CONTENT */}
-       <div className="md:ml-6 mt-4 md:mt-0 flex flex-col ">
-         {post.category && (
-           <p className="mb-1 block text-sm font-semibold text-cyan-500">
-             {post.category}
-           </p>
-         )}
- 
-         {post.title && (
-           <h2 className="mb-1 text-slate-900 font-semibold">
-             {post.title}
-           </h2>
-         )}
-    
-   
-         {post.text && (
-           <p className="   text-sm  text-slate-60">
-             {post.text}
-           </p>
-         )}
- 
-         <button className="self-start px-4 py-2 mt-12 text-sm font-medium text-gray-800 bg-gray-100 rounded-full hover:bg-gray-200 transition">
-           Read more
-         </button>
-       </div>
-     </div>
-   ))}
- </div>
- 
-  ))}
-</div>
+      <div className="">
+        {posts.map((post) => (
+          <div
+            key={post.id}
+            className="relative flex flex-col m-4 md:flex-row bg-white p-4 shadow-lg rounded-xl"
+          >
+            {/* Three dots menu */}
+            <div className="absolute top-4 right-4">
+              <button
+                onClick={() => toggleMenu(post.id)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <HiOutlineDotsVertical size={20} />
+              </button>
+
+              {openMenuId === post.id && (
+                <div className="absolute right-0 mt-2 w-15 bg-white border rounded-xl shadow-lg z-10">
+                  <button
+                    onClick={() => handleEdit(post)}
+                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    <MdModeEditOutline size={20}  /> 
+                  </button>
+                  <button
+                    onClick={() => handleDelete(post.id)}
+                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 text-red-500"
+                  >
+                    <MdDelete size={20} className="inline" /> 
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* IMAGE */}
+            {post.image && (
+              <img
+                src={post.image}
+                alt="Post"
+                className="h-[33vh] object-cover mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full"
+              />
+            )}
+
+            {/* CONTENT */}
+            <div className="md:ml-6 mt-4 md:mt-0 flex flex-col">
+              {post.category && (
+                <p className="mb-1 block text-sm font-semibold text-cyan-500">
+                  {post.category}
+                </p>
+              )}
+
+              {post.title && (
+                <h2 className="mb-1 text-slate-900 font-semibold">
+                  {post.title}
+                </h2>
+              )}
+
+              {post.text && (
+                <p className="text-sm text-slate-600">
+                  {post.text}
+                </p>
+              )}
+
+              <button className="self-start px-4 py-2 mt-12 text-sm font-medium text-gray-800 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+                Read more
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
 
 
 
