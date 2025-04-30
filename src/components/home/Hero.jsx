@@ -10,7 +10,7 @@ const Hero = () => {
          
     
 
-          <section class="relative h-[90vh] flex items-center justify-center text-center">
+          <section className="relative h-[90vh] flex items-center justify-center text-center">
         
           <div className="absolute rounded-xl bg m-4 inset-0 bg-center bg-cover bg-no-repeat "><img src={image.cv} className=' w-[100%] object-cover rounded-xl  h-[100%]' alt="" /></div>
           
