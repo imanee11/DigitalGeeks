@@ -4,7 +4,7 @@ const Blog = () => {
     return (
         <div>
           <div className="relative">
-  {/* <button
+  <button
     className="absolute top-2 right-2 p-1 group cursor-pointer outline-none hover:rotate-90 duration-300"
     title="Add New"
   >
@@ -22,16 +22,16 @@ const Blog = () => {
       <path strokeWidth="1.5" d="M8 12H16"></path>
       <path strokeWidth="1.5" d="M12 16V8"></path>
     </svg>
-  </button> */}
+  </button>
 </div>
 
-        {/* <ul class="grid grid-cols-1 xl:grid-cols-3 gap-y-10 gap-x-6 items-start p-8">
+        <ul class="grid grid-cols-1 xl:grid-cols-3 gap-y-10 gap-x-6 items-start p-8">
           
        
           <li class="relative flex flex-col sm:flex-row xl:flex-col items-start">
             <div class="order-1 sm:ml-6 xl:ml-0">
               <h3 class="mb-1 text-slate-900 font-semibold">
-                <span class="mb-1 block text-sm leading-6 text-indigo-500">Nervous But Ready</span>
+                <span class="mb-1 block text-sm leading-6 text-cyan-500">Nervous But Ready</span>
                 My very first job interview taught me more than any class ever did.
               </h3>
               <div class="prose prose-slate prose-sm text-slate-600">
@@ -44,14 +44,14 @@ const Blog = () => {
                 </svg>
               </a>
             </div>
-            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273c" alt="Interview nervous" class="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full" />
+            <img src="https://images.unsplash.com/photo-1647964366344-bc680baf64e2?q=80&w=2026&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Interview nervous" className="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full"  />
           </li>
       
        
           <li class="relative flex flex-col sm:flex-row xl:flex-col items-start">
             <div class="order-1 sm:ml-6 xl:ml-0">
               <h3 class="mb-1 text-slate-900 font-semibold">
-                <span class="mb-1 block text-sm leading-6 text-purple-500">Unexpected Questions</span>
+                <span class="mb-1 block text-sm leading-6 text-cyan-500">Unexpected Questions</span>
                 “Tell me about a failure” — I wasn’t ready for that one.
               </h3>
               <div class="prose prose-slate prose-sm text-slate-600">
@@ -84,10 +84,10 @@ const Blog = () => {
                 </svg>
               </a>
             </div>
-            <img src="https://images.unsplash.com/photo-1520975698519-59ad6f156f52" alt="Passionate candidate" class="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full" />
+            <img src="https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGN2fGVufDB8fDB8fHww" alt="Passionate candidate" className="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full" />
           </li>
       
-        </ul> */}
+        </ul>
       </div>
       
     );
