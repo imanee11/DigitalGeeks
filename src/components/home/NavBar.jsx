@@ -20,7 +20,7 @@ const NavBar = () => {
         <div className="hidden md:flex items-center gap-6">
           <a href="/" className="hover:underline text-sm">Home</a>
           <a href="#about" className="hover:underline text-sm">About</a>
-          <a href="#features" className="hover:underline text-sm">Features</a>
+          <a href="#features" className="hover:underline text-sm">Blog</a>
         </div>
 
         {/* Buttons */}
@@ -28,9 +28,9 @@ const NavBar = () => {
           <button onClick={toggleTheme} className="hover:bg-gray-800 dark:hover:bg-gray-200 p-2 rounded-full transition">
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <a href="/login" className="text-sm hover:underline">Login</a>
-          <a href="/signup" className="px-4 py-2 text-sm bg-[#737778] hover:bg-[#737778] text-white rounded-3xl transition">
-            Sign Up
+          <a href="/loginform" className="text-sm hover:underline">Login</a>
+          <a href="/signupform" className="px-4 py-2 text-sm bg-[#737778] hover:bg-[#737778] text-white rounded-3xl transition">
+            Register
           </a>
         </div>
 
