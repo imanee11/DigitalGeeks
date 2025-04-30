@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 const Blog = () => {
-
+    const [category, setCategory] = useState('');
+    const [title, setTitle] = useState('');    
   const [isOpen, setIsOpen] = useState(false);
   const [post, setPost] = useState("");
   const [image, setImage] = useState(null);
@@ -18,7 +19,9 @@ const Blog = () => {
     e.preventDefault();
     const newPost = {
       id: Date.now(),
+      category : category,
       text: post,
+      title : title,
       image: imagePreview,
     };
     setPosts([newPost, ...posts]);
@@ -118,8 +121,7 @@ const Blog = () => {
 
       </ul>
 
-
-
+   
       {/* Modal */}
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -134,71 +136,119 @@ const Blog = () => {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit}>
-              <textarea
-                className="w-full p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-                rows="5"
-                placeholder="What's on your mind?"
-                value={post}
-                onChange={(e) => setPost(e.target.value)}
-                required
-              ></textarea>
+            <form onSubmit={handleSubmit} className="space-y-4">
+  {/* Category Input */}
+  <input
+    type="text"
+    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+    placeholder="Category (e.g., Unexpected Questions)"
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    required
+  />
 
-              {/* Image Upload Input */}
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  if (file) {
-                    setImage(file);
-                    setImagePreview(URL.createObjectURL(file));
-                  }
-                }}
-                className="mt-4"
-              />
+  {/* Title Input */}
+  <input
+    type="text"
+    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+    placeholder="Title (e.g., “Tell me about a failure” — I wasn’t ready for that one.)"
+    value={title}
+    onChange={(e) => setTitle(e.target.value)}
+    required
+  />
 
-              {/* Preview Image */}
-              {imagePreview && (
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                  className="mt-4 w-full rounded-xl"
-                />
-              )}
+  {/* Main Text */}
+  <textarea
+    className="w-full p-4 border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+    rows="1"
+    placeholder="Share your story..."
+    value={post}
+    onChange={(e) => setPost(e.target.value)}
+    required
+  ></textarea>
 
-              <button
-                type="submit"
-                className="mt-4 w-full bg-[#b1916b] text-white py-2 rounded-xl font-semibold hover:bg-[#8f8e93] transition duration-300"
-              >
-                Publish Story
-              </button>
-            </form>
+  {/* Image Upload Input */}
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) {
+        setImage(file);
+        setImagePreview(URL.createObjectURL(file));
+      }
+    }}
+    className="mt-2"
+  />
+
+  {/* Preview Image */}
+  <img
+  src={imagePreview}
+  alt="Preview"
+  className="mt-2 w-full h-40 object-cover rounded-xl"
+/>
+
+
+  {/* Submit Button */}
+  <button
+    type="submit"
+    className="w-full bg-[#b1916b] text-white py-2 rounded-xl font-semibold hover:bg-[#8f8e93] transition duration-300"
+  >
+    Publish Story
+  </button>
+</form>
+
 
           </div>
         </div>
       )}
 
-<div className="mt-10 max-w-2xl mx-auto space-y-6">
+<div className=" ">
   {posts.map((post) => (
-    <div
-      key={post.id}
-      className="bg-white p-4 rounded-xl shadow-md border border-gray-200"
-    >
-      {/* POST DESCRIPTION */}
-      {post.text && (
-        <p className="text-gray-800 whitespace-pre-line mb-2">{post.text}</p>
-      )}
-
-      {/* IMAGE IF EXISTS */}
-      {post.image && (
-        <img
-          src={post.image}
-          alt="Post"
-          className="w-full rounded-xl object-cover"
-        />
-      )}
-    </div>
+   <div className="">
+   {posts.map((post) => (
+     <div
+       key={post.id}
+       className="flex flex-col m-4 md:flex-row bg-white p-4 "
+     >
+       {/* IMAGE */}
+       {post.image && (
+         <img
+           src={post.image}
+           alt="Post"
+          className="h-[33vh] object-cover mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0 xl:mb-6 xl:w-full"
+         />
+       )}
+ 
+       {/* CONTENT */}
+       <div className="md:ml-6 mt-4 md:mt-0 flex flex-col ">
+         {post.category && (
+           <p className="mb-1 block text-sm font-semibold text-cyan-500">
+             {post.category}
+           </p>
+         )}
+ 
+         {post.title && (
+           <h2 className="mb-1 text-slate-900 font-semibold">
+             {post.title}
+           </h2>
+         )}
+    
+   
+         {post.text && (
+           <p className="   text-sm  text-slate-60">
+             {post.text}
+           </p>
+         )}
+ 
+         <button className="self-start px-4 py-2 mt-12 text-sm font-medium text-gray-800 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+           Read more
+         </button>
+       </div>
+     </div>
+   ))}
+ </div>
+ 
   ))}
 </div>
 
