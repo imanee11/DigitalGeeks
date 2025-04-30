@@ -37,7 +37,7 @@ const Blog = () => {
               <div class="prose prose-slate prose-sm text-slate-600">
                 <p>Walking into the room, I felt overwhelmed. But when I sat down, I realized the interviewers were human too. I smiled, breathed, and told my story like I owned it.</p>
               </div>
-              <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 focus:ring-slate-500 mt-6" href="">
+              <a  class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 focus:ring-slate-500 mt-6" href="">
                 Read more<span class="sr-only">, First interview experience</span>
                 <svg class="overflow-visible ml-3 text-slate-300 group-hover:text-slate-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M0 0L3 3L0 6"></path>
